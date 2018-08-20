@@ -44,4 +44,10 @@ app.get('/bad', (req, resp)=>{
 			errorMessage:'Not good'
 		});
 });
+app.get('/contacts', (req, resp)=>{
+	resp.render('contacts.hbs',
+		{
+			pageTitle:"Contacts"
+		});
+});
 app.listen(port,()=>{console.log(`Server start on port ${port}`)});
