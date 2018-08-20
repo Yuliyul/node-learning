@@ -1,6 +1,7 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
+const port = process.env.PORT || 3000;
 var app = express();
 hbs.registerPartials(__dirname + '/views/partials');
 hbs.registerHelper('curyear', ()=>{ return new Date().getFullYear()});
@@ -16,12 +17,12 @@ app.use((req, res, next)=>{
 			console.log('Some error' + err)});
 	next();  
 });
-app.use((req, res, next)=>{
-	res.render('maintain.hbs',
-	{
-		pageTitle:"maintainance"
-	}); 
-});
+// app.use((req, res, next)=>{
+// 	res.render('maintain.hbs',
+// 	{
+// 		pageTitle:"maintainance"
+// 	}); 
+// });
 app.get('/', (req, resp)=>{
 	// resp.send('<h1>Hello world</h1>');
 	resp.render('home.hbs',
@@ -43,4 +44,4 @@ app.get('/bad', (req, resp)=>{
 			errorMessage:'Not good'
 		});
 });
-app.listen(3000,()=>{console.log('Server start')});
+app.listen(port,()=>{console.log(`Server start on port ${port}`)});
